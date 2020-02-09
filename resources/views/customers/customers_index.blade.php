@@ -120,7 +120,6 @@
                 <td>{{$customer->customer_remark}}</td>
 
                 <td>
-
                     <form action="{{ route('customers.destroy',$customer->customer_id) }}" method="POST">
                         @csrf
                         @method('DELETE')

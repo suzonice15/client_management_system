@@ -30,7 +30,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-   User Management Software
+   Client Management Software
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
