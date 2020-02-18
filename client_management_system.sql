@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2020 at 07:27 AM
+-- Generation Time: Feb 18, 2020 at 01:03 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -75,15 +75,16 @@ CREATE TABLE `cpanels` (
   `cpanel_user` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `cpanel_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `cpanel_url` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `cpanels`
 --
 
-INSERT INTO `cpanels` (`id`, `cpanel_domain_name`, `cpanel_user`, `cpanel_password`, `created_at`, `updated_at`) VALUES
-(3, 'Dhaka.com', 'dhakabadd', '01!@#hgdfdf%$33*()', '2019-12-24 02:35:55', '2019-12-24 02:35:55');
+INSERT INTO `cpanels` (`id`, `cpanel_domain_name`, `cpanel_user`, `cpanel_password`, `created_at`, `updated_at`, `cpanel_url`) VALUES
+(5, 'Laravel cpanel:https://server229.web-hosting.com:2083/', 'ss', 'sss', '2020-02-18 05:40:44', '2020-02-18 05:40:44', 'ss');
 
 -- --------------------------------------------------------
 
@@ -138,7 +139,7 @@ INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_mobile`, `cus
 (53, 'Md Rubel', '01714954418', NULL, NULL, 3, 8, 1, 7, 7, 4, 'School Management With Finger Print', NULL, '2019-07-08', 0, '2019-07-07 19:17:56', '2019-12-24 03:02:21'),
 (54, 'Akherujjaman', '01309454691', NULL, NULL, 0, 0, 0, 0, 0, 0, NULL, 'website / kono service nibe, phone dite hobe', '2019-07-09', 0, '2019-07-09 08:51:53', '2019-07-09 08:51:53'),
 (55, 'Md. Rezaur Rahma', '01634500500', NULL, NULL, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, '2019-07-09 15:44:08', '2019-07-09 15:44:08'),
-(56, 'Md Harun Ur Rashid', '01711540760', NULL, NULL, 1, 11, 0, 8, 8, 5, 'multi Vendor ecommerce', NULL, NULL, 0, '2019-07-09 16:20:13', '2019-07-09 16:20:13'),
+(56, 'Md Harun Ur Rashid', '01711540760', NULL, NULL, 1, 11, 2, 8, 8, 5, 'multi Vendor ecommerce', NULL, NULL, 0, '2019-07-09 16:20:13', '2020-02-18 03:51:04'),
 (57, 'Md Moniruzzaman Robin', '01710020008', NULL, NULL, 0, 0, 1, 0, 0, 0, 'Ajke call dite hobe', NULL, '2019-07-10', 0, '2019-07-10 05:13:04', '2019-12-24 03:02:10');
 
 -- --------------------------------------------------------
@@ -194,7 +195,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2019_06_18_084126_create_types_table', 2),
 (8, '2019_07_13_052823_create_services_table', 3),
 (9, '2019_07_13_093049_create_service_categories_table', 4),
-(10, '2019_12_24_051944_create_cpanels_table', 4);
+(10, '2019_12_24_051944_create_cpanels_table', 5);
 
 -- --------------------------------------------------------
 
@@ -391,7 +392,6 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Shahinul isam', 'suzonice15@gmail.com', NULL, '9e07a605cd000f078a3fa3ac11b53761', NULL, NULL, NULL),
 (2, 'Anisur  ffffffff', 'info@ddd.ffffff', NULL, '25d55ad283aa400af464c76d713c07ad', NULL, NULL, NULL);
 
 --
@@ -485,13 +485,13 @@ ALTER TABLE `areas`
 -- AUTO_INCREMENT for table `cpanels`
 --
 ALTER TABLE `cpanels`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `customer_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `migrations`

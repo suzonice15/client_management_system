@@ -3,7 +3,7 @@
 @section('pageTitle')
 <div class="box-header with-border">
     <h3 class="box-title"><?php if(isset($title) ) {  echo $title; }    ?>  </h3>
-    <a href="{{ route('cpanel.create') }}" class="btn btn-success pull-right"> Add New </a>
+    <a href="{{ route('cpanels.create') }}" class="btn btn-success pull-right"> Add New </a>
 </div>
     @endsection
 @section('mainContent')
@@ -15,6 +15,7 @@
             <tr>
                 <th>Sl</th>
                 <th> Domain Name</th>
+                <th> Cpanel Url </th>
                 <th>User Name</th>
                 <th>Password</th>
                 <th>Created date</th>
@@ -30,6 +31,7 @@
                 <td>{{ ++$i }}</td>
 
                 <td>{{$cpanel->cpanel_domain_name}}</td>
+                <td>{{$cpanel->cpanel_url}}</td>
 
                 <td>{{$cpanel->cpanel_user}}
                    </td>
@@ -39,11 +41,11 @@
 
                 <td>
 
-                    <form action="{{ route('cpanel.destroy',$cpanel->id) }}" method="POST">
+                    <form action="{{ route('cpanels.destroy',$cpanel->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
 
-                        <a href="{{ route('cpanel.edit',$cpanel->id) }}"> <span class="glyphicon glyphicon-edit btn btn-success"></span></a>
+                        <a href="{{ route('cpanels.edit',$cpanel->id) }}"> <span class="glyphicon glyphicon-edit btn btn-success"></span></a>
                         <input type="submit" class="btn btn-danger" value="Delete">
                     </form>
 

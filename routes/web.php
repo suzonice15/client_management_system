@@ -31,7 +31,7 @@ Route::get('customer/clients', 'CustomerController@clients');
 
 /********************* setting controller             *//////
 Route::resource('setting', 'SettingController');
-Route::resource('cpanel', 'CpanelController');
+Route::resource('cpanels', 'CpanelController');
 Route::resource('users', 'UsersController');
 
 

@@ -23,7 +23,7 @@
 
         @endif
 
-            <form   action="{{ route('cpanel.update',$cpanel->id) }}" class="form-horizontal"  method="post" enctype="multipart/form-data" >
+            <form   action="{{ route('cpanels.update',$cpanel->id) }}" class="form-horizontal"  method="post" enctype="multipart/form-data" >
             @csrf
             @method('PUT')
 
@@ -32,7 +32,7 @@
     </div>
     <!-- /.box-body -->
     <div class="box-footer">
-        <a type="submit" class="btn btn-danger"  href="{{ route('cpanel.index') }}">Cancel</a>
+        <a type="submit" class="btn btn-danger"  href="{{ route('cpanels.index') }}">Cancel</a>
         <button type="submit" class="btn btn-info pull-right">Save</button>
     </div>
 

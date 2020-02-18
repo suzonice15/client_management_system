@@ -8,7 +8,7 @@ class Cpanel extends Model
 {
 
         protected $fillable = [
-        'cpanel_domain_name', 'cpanel_user', 'cpanel_password',
+        'cpanel_domain_name', 'cpanel_user', 'cpanel_password','cpanel_url',
 
     ];
 }

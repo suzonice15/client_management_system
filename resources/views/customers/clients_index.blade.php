@@ -1,12 +1,13 @@
 
 @extends('layouts.master')
 @section('pageTitle')
-<div class="box-header with-border">
-    <h3 class="box-title"><?php if(isset($title) ) {  echo $title; }    ?>  </h3>
-    <a href="{{ route('users.create') }}" class="btn btn-success pull-right"> Add New </a>
-</div>
-    @endsection
+    <div class="box-header with-border">
+        <h3 class="box-title"><?php if(isset($title) ) {  echo $title; }    ?>  </h3>
+        <a href="{{ route('customers.create') }}" class="btn btn-success pull-right"> Add New </a>
+    </div>
+@endsection
 @section('mainContent')
+
 
     <div class="box-body table-responsive">
         <table id="datatable" class="table table-bordered" style="width:100%">
@@ -14,37 +15,52 @@
             <tr>
                 <th>Sl</th>
                 <th>Name</th>
+                <th>Mobile</th>
                 <th>Email</th>
-               <th id="hideHeading">Action</th>
+                <th>Divisions</th>
+                <th>Area</th>
+                <th>Address</th>
+                <th>profession</th>
+                <th>position</th>
+                <th>type</th>
+
+
+                <th id="hideHeading">Action</th>
             </tr>
             </thead>
             <tbody>
             <?php $i=0;?>
-            @if(isset($users))
-                @foreach( $users as $user)
-                    <?php if($user->email=='suzonice15@gmail.com')
-                        continue
-                    ?>
-            <tr>
-                <td>{{ ++$i }}</td>
-                <td>{{$user->name}}</td>
+            @if(isset($customers))
+                @foreach( $customers as $customer)
+                    <tr>
+                        <td>{{ ++$i }}</td>
 
-                <td>{{$user->email}}
-                    </td>
-                <td>
+                        <td>{{$customer->customer_name}}</td>
 
-                    <form action="{{ route('users.destroy',$user->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
+                        <td>{{$customer->customer_mobile}}
+                            <br/>
+                            {{$customer->customer_mobile_two}}</td>
+                        <td>{{$customer->customer_email}}</td>
+                        <td>{{$customer->division_name}}</td>
+                        <td>{{$customer->area_name}}</td>
+                        <td>{{$customer->customer_address}}</td>
+                        <td>{{$customer->profession_name}}</td>
+                        <td>{{$customer->position_name}}</td>
+                        <td>{{$customer->type_name}}</td>
 
-                        <a href="{{ route('users.edit',$user->id) }}"> <span class="glyphicon glyphicon-edit btn btn-success"></span></a>
-                        <input type="submit" class="btn btn-danger" value="Delete">
-                    </form>
+                        <td>
+                            <form action="{{ route('customers.destroy',$customer->customer_id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <a  target="_blank" href="{{ url('/customers/notificationView/'.$customer->customer_id) }}"> <span class="glyphicon glyphicon-user btn btn-info"></span></a>
+                                <a href="{{ route('customers.edit',$customer->customer_id) }}"> <span class="glyphicon glyphicon-edit btn btn-success"></span></a>
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </form>
 
-                </td>
-            </tr>
-@endforeach
-                @endif
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
 
 
             </tbody>
@@ -92,15 +108,15 @@
                 $.ajax({
                     type:"get",
                     url: "{{url('get-division-list')}}?devision_id="+division_id,
-                     success: function (results) {
+                    success: function (results) {
                         var str = "";
                         var str1 = "";
                         $.each(results, function (key, result) {
-                           key= key+1;
+                            key= key+1;
                             str = '<tr>' +
-                                '<td>'+key+'</td>' +
-                                '<td >' + result['customer_name'] + '</td><td>' + result['customer_mobile'] + '</td><td>' + result['customer_email'] + '</td><td>' + result['division_name'] + '</td><td>' + result['area_name'] + '</td><td>' + result['customer_address'] + '</td><td>' + result['profession_name'] + '</td><td>' + result['position_name'] + '</td><td>' + result['type_name'] + '</td><td>' + result['customer_remark'] + '</td>'+
-                                '</tr>';
+                                    '<td>'+key+'</td>' +
+                                    '<td >' + result['customer_name'] + '</td><td>' + result['customer_mobile'] + '</td><td>' + result['customer_email'] + '</td><td>' + result['division_name'] + '</td><td>' + result['area_name'] + '</td><td>' + result['customer_address'] + '</td><td>' + result['profession_name'] + '</td><td>' + result['position_name'] + '</td><td>' + result['type_name'] + '</td><td>' + result['customer_remark'] + '</td>'+
+                                    '</tr>';
                             str1 = str1 + str;
                         });
                         $("#datatable tbody").empty();
@@ -115,7 +131,7 @@
 
         function areaDataLoad($value){
             var area_id = $value;
-           var  division_id=$('#devision_id').val();
+            var  division_id=$('#devision_id').val();
             var _token = $('input[name="_token"]').val();
             if(division_id){
                 $.ajax({
@@ -128,9 +144,9 @@
                         $.each(results, function (key, result) {
                             key= key+1;
                             str = '<tr>' +
-                                '<td>'+key+'</td>' +
-                                '<td >' + result['customer_name'] + '</td><td>' + result['customer_mobile'] + '</td><td>' + result['customer_email'] + '</td><td>' + result['division_name'] + '</td><td>' + result['area_name'] + '</td><td>' + result['customer_address'] + '</td><td>' + result['profession_name'] + '</td><td>' + result['position_name'] + '</td><td>' + result['type_name'] + '</td><td>' + result['customer_remark'] + '</td>'+
-                                '</tr>';
+                                    '<td>'+key+'</td>' +
+                                    '<td >' + result['customer_name'] + '</td><td>' + result['customer_mobile'] + '</td><td>' + result['customer_email'] + '</td><td>' + result['division_name'] + '</td><td>' + result['area_name'] + '</td><td>' + result['customer_address'] + '</td><td>' + result['profession_name'] + '</td><td>' + result['position_name'] + '</td><td>' + result['type_name'] + '</td><td>' + result['customer_remark'] + '</td>'+
+                                    '</tr>';
                             str1 = str1 + str;
                         });
                         $("#datatable tbody").empty();
@@ -159,9 +175,9 @@
                         $.each(results, function (key, result) {
                             key= key+1;
                             str = '<tr>' +
-                                '<td>'+key+'</td>' +
-                                '<td >' + result['customer_name'] + '</td><td>' + result['customer_mobile'] + '</td><td>' + result['customer_email'] + '</td><td>' + result['division_name'] + '</td><td>' + result['area_name'] + '</td><td>' + result['customer_address'] + '</td><td>' + result['profession_name'] + '</td><td>' + result['position_name'] + '</td><td>' + result['type_name'] + '</td><td>' + result['customer_remark'] + '</td>'+
-                                '</tr>';
+                                    '<td>'+key+'</td>' +
+                                    '<td >' + result['customer_name'] + '</td><td>' + result['customer_mobile'] + '</td><td>' + result['customer_email'] + '</td><td>' + result['division_name'] + '</td><td>' + result['area_name'] + '</td><td>' + result['customer_address'] + '</td><td>' + result['profession_name'] + '</td><td>' + result['position_name'] + '</td><td>' + result['type_name'] + '</td><td>' + result['customer_remark'] + '</td>'+
+                                    '</tr>';
                             str1 = str1 + str;
                         });
                         $("#datatable tbody").empty();
@@ -192,9 +208,9 @@
                         $.each(results, function (key, result) {
                             key= key+1;
                             str = '<tr>' +
-                                '<td>'+key+'</td>' +
-                                '<td >' + result['customer_name'] + '</td><td>' + result['customer_mobile'] + '</td><td>' + result['customer_email'] + '</td><td>' + result['division_name'] + '</td><td>' + result['area_name'] + '</td><td>' + result['customer_address'] + '</td><td>' + result['profession_name'] + '</td><td>' + result['position_name'] + '</td><td>' + result['type_name'] + '</td><td>' + result['customer_remark'] + '</td>'+
-                                '</tr>';
+                                    '<td>'+key+'</td>' +
+                                    '<td >' + result['customer_name'] + '</td><td>' + result['customer_mobile'] + '</td><td>' + result['customer_email'] + '</td><td>' + result['division_name'] + '</td><td>' + result['area_name'] + '</td><td>' + result['customer_address'] + '</td><td>' + result['profession_name'] + '</td><td>' + result['position_name'] + '</td><td>' + result['type_name'] + '</td><td>' + result['customer_remark'] + '</td>'+
+                                    '</tr>';
                             str1 = str1 + str;
                         });
                         $("#datatable tbody").empty();
@@ -225,9 +241,9 @@
                         $.each(results, function (key, result) {
                             key= key+1;
                             str = '<tr>' +
-                                '<td>'+key+'</td>' +
-                                '<td >' + result['customer_name'] + '</td><td>' + result['customer_mobile'] + '</td><td>' + result['customer_email'] + '</td><td>' + result['division_name'] + '</td><td>' + result['area_name'] + '</td><td>' + result['customer_address'] + '</td><td>' + result['profession_name'] + '</td><td>' + result['position_name'] + '</td><td>' + result['type_name'] + '</td><td>' + result['customer_remark'] + '</td>'+
-                                '</tr>';
+                                    '<td>'+key+'</td>' +
+                                    '<td >' + result['customer_name'] + '</td><td>' + result['customer_mobile'] + '</td><td>' + result['customer_email'] + '</td><td>' + result['division_name'] + '</td><td>' + result['area_name'] + '</td><td>' + result['customer_address'] + '</td><td>' + result['profession_name'] + '</td><td>' + result['position_name'] + '</td><td>' + result['type_name'] + '</td><td>' + result['customer_remark'] + '</td>'+
+                                    '</tr>';
                             str1 = str1 + str;
                         });
                         $("#datatable tbody").empty();

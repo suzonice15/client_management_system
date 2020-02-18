@@ -42,12 +42,15 @@ class CpanelController extends Controller
     public function store(Request $request)
     {
 
-        $result = Cpanel::create($request->all());       
+
+    
+        $result = Cpanel::create($request->all());
+
         if ($result) {
-            return redirect()->route('cpanel.index')
+            return redirect()->route('cpanels.index')
                 ->with('success', 'created successfully.');
         } else {
-            return redirect()->route('cpanel.create')
+            return redirect()->route('cpanels.create')
                 ->with('error', 'Some problem to insert data');
         }
 
@@ -91,7 +94,7 @@ class CpanelController extends Controller
         $cpanel->update($request->all());
 
 
-        return redirect()->route('cpanel.index')
+        return redirect()->route('cpanels.index')
             ->with('success', 'updated successfully');
     }
 
@@ -104,7 +107,7 @@ class CpanelController extends Controller
     public function destroy(Cpanel $cpanel)
     {
         $cpanel->delete();
-        return redirect()->route('cpanel.index')
+        return redirect()->route('cpanels.index')
 
             ->with('success','deleted successfully');
     }

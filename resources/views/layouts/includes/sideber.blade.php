@@ -7,6 +7,7 @@ $clients=DB::table('customers')->where('customer_status',1)->count();
 $programers=DB::table('customers')->where('customer_status',2)->count();
 $notification=DB::table('customers')->where('customer_remendar_date',$date)->where('customer_view',0)->count();
 $viewnotification=DB::table('customers')->where('customer_view',1)->count();
+$cpanels=DB::table('cpanels')->count();
 ;
 ?>
 <aside class="main-sidebar">
@@ -87,10 +88,10 @@ $viewnotification=DB::table('customers')->where('customer_view',1)->count();
             </a>
         </li>
         <li >
-            <a href="{{ route('cpanel.index')}}">
+            <a href="{{ route('cpanels.index')}}">
                 <i class="fa fa-th"></i> <span>Cpanels list</span>
 
-                <span class="count pull-right" style="width:22px;height:22px;background:green;color:#fff;text-align:center;border-radius:50%;font-size:12px;">{{$customers}}</span>
+                <span class="count pull-right" style="width:22px;height:22px;background:green;color:#fff;text-align:center;border-radius:50%;font-size:12px;">{{$cpanels}}</span>
 
 
             </a>

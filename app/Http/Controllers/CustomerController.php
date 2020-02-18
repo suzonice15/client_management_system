@@ -289,7 +289,7 @@ class CustomerController extends Controller
         $data['professions'] = Profession::all();
         $data['positions'] = Position::all();
         $data['types'] = Type::all();
-        return view('customers.customers_index', $data);
+        return view('customers.programers_index', $data);
 
 
 
@@ -298,8 +298,8 @@ class CustomerController extends Controller
     public  function clients(){
 
 
-        $data['main'] = 'Programers';
-        $data['active'] = 'Programers';
+        $data['main'] = 'Clients';
+        $data['active'] = 'Clients';
         $data['divisions'] = DB::table('divisions')->get();
         $data['customers'] = DB::table('customers')->where('customer_status',1)->orderBy('customers.customer_id', 'DESC')
             ->leftJoin('positions', 'customers.position_id', '=', 'positions.position_id')
@@ -308,10 +308,8 @@ class CustomerController extends Controller
             ->leftJoin('areas', 'customers.area_id', '=', 'areas.area_id')
             ->leftJoin('types', 'customers.type_id', '=', 'types.type_id')
             ->select('customers.*', 'professions.profession_name', 'positions.position_name','types.type_name','divisions.division_name','areas.area_name')->get();
-        $data['professions'] = Profession::all();
-        $data['positions'] = Position::all();
-        $data['types'] = Type::all();
-        return view('customers.customers_index', $data);
+    
+        return view('customers.clients_index', $data);
 
 
 
