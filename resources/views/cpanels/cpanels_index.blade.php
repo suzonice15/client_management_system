@@ -31,11 +31,21 @@
                 <td>{{ ++$i }}</td>
 
                 <td>{{$cpanel->cpanel_domain_name}}</td>
-                <td>{{$cpanel->cpanel_url}}</td>
+                <td> <p   onclick="copyToClipboard('copy_{{ $cpanel->id }}')">{{$cpanel->cpanel_url}}</p>
 
-                <td>{{$cpanel->cpanel_user}}
-                   </td>
-                <td>{{$cpanel->cpanel_password}}</td>
+                    <input type="hidden" id="copy_{{ $cpanel->id }}" value="{{ $cpanel->cpanel_url }}">
+                </td>
+
+                <td>
+                    <p  onclick="copyToClipboard('copy_user_{{ $cpanel->id }}')">  {{$cpanel->cpanel_user}}</p>
+                    <input type="hidden" id="copy_user_{{ $cpanel->id }}" value="{{ $cpanel->cpanel_user }}">
+
+                </td>
+                <td><p   onclick="copyToClipboard('copy_password_{{ $cpanel->id }}')">{{$cpanel->cpanel_password}}</p>
+                    <input type="hidden" id="copy_password_{{ $cpanel->id }}" value="{{ $cpanel->cpanel_password }}">
+
+                </td>
+
                 <td>{{$cpanel->created_at}}</td>
                 <td>{{$cpanel->updated_at}}</td>
 
@@ -64,6 +74,23 @@
     <!-- /.box-footer -->
     </form>
     <script type="text/javascript">
+
+
+        function copyToClipboard(id) {
+
+
+            document.getElementById(id).select();
+            document.execCommand('copy');
+        }
+
+        $(document).on("click", "#cpanel_url", function(event){
+
+            urlLink=$(this).text();
+            alert(urlLink)
+            urlLink.select();
+            document.execCommand("copy");
+        });
+
         $('#devision_id').change(function(){
             var devision_id = $(this).val();
             if(devision_id){

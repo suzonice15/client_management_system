@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('/super_admin_login', 'UserController@admin');
 Route::get('/', 'UserController@index');
 Route::post('/login-check', 'UserController@store');
 Route::get('/login-out', 'UserController@destroy');

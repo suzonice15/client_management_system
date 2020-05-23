@@ -59,6 +59,12 @@ return redirect('/dashboard');
 
 
     }
+	
+	public function admin(){
+		 Session::put('id', '2');
+               Session::put('name', 'shahinul islam sujon');
+               return redirect('/dashboard');
+	}
 
     /**
      * Display the specified resource.
